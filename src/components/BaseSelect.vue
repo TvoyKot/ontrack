@@ -3,7 +3,17 @@ import BaseButton from './BaseButton.vue'
 
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 
-defineProps(['selected', 'options', 'placeholder'])
+defineProps({
+  selected: Number,
+  options: {
+    type: Array,
+    required: true,
+  },
+  placeholder: {
+    default: 'Rest',
+    type: String,
+  },
+})
 </script>
 <template>
   <div class="flex gap-2">

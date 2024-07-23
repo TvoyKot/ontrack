@@ -6,8 +6,11 @@ import { XMarkIcon } from '@heroicons/vue/24/solid'
 defineProps({
   selected: Number,
   options: {
-    type: Array,
     required: true,
+    type: Array,
+    validator(options) {
+      return options.every(({ value, label }) => typeof value === 'number' && typeof label === 'string')
+    },
   },
   placeholder: {
     default: 'Rest',

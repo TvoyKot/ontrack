@@ -1,5 +1,4 @@
 <script setup>
-const emit = defineEmits(['navigate'])
 import { NAV_ITEMS } from '../constants.js'
 import { isPageValid } from '../validators.js'
 
@@ -12,6 +11,11 @@ defineProps({
     validator: isPageValid,
   },
 })
+
+const emit = defineEmits({
+  navigate: isPageValid
+})
+
 </script>
 <template>
   <nav class="sticky bottom-0 z-10 bg-white text-3xl">

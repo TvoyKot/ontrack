@@ -24,10 +24,11 @@ const options = [
 ]
 
 const selectedActivityId = ref(1)
+
 </script>
 <template>
   <li class="relative flex flex-col gap-2 border-gray-200 border-t py-10 px-4">
     <a href="#" :class="hourLinkClasses">{{ timelineItem.hour }}:00</a>
-    <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Rest" />
+    <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Rest" @select="selectedActivityId = $event"/>
   </li>
 </template>

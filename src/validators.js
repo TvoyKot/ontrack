@@ -5,9 +5,44 @@ export function isPageValid(page) {
 }
 
 export function isTimelineItemValid({ hour }) {
-  return typeof hour === 'number' && hour >= MIDNIGHTHOUR && hour < HOURS_IN_DAY
+  return isHourValid(hour)
+}
+
+export function isHourValid(hour) {
+  return isNumber(hour) && isBetween(hour, MIDNIGHTHOUR, HOURS_IN_DAY - 1)
 }
 
 export function validateSelectOptions(options) {
-  return options.every(({ value, label }) => typeof value === 'number' && typeof label === 'string')
+  return options.every(isSelectOptionValid)
+}
+
+export function isSelectOptionValid({ value, label }) {
+  return isNumber(value) && isString(label)
+}
+export function isUndefinedOrNull(value) {
+  return isUndefined(value) || isNull(value)
+}
+
+export function isNumberOrNull(value) {
+  return isNumber(value) || isNull(value)
+}
+
+function isBetween(value, start, end) {
+  return value >= start && value <= end
+}
+
+function isNull(value) {
+  return value === null
+}
+
+function isUndefined(value) {
+  return value === undefined
+}
+
+function isNumber(value) {
+  return value === 'number'
+}
+
+function isString(value) {
+  return value === 'string'
 }

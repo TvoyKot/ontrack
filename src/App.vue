@@ -14,6 +14,8 @@ import TheNav from './components/TheNav.vue'
 
 const timelineItems = generateTimelineItems()
 
+const activities = ['Coding', 'Reading', 'Training']
+
 const currentPage = ref(normalizePageHash())
 
 function goTo(page) {
@@ -29,9 +31,9 @@ function goTo(page) {
   <main class="flex flex-grow flex-col">
     <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems"/>
     <TheProgress v-show="currentPage === PAGE_PROGRESS"/>
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES"/>
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities"/>
   </main>
-  <TheNav :current-page="currentPage" @navigate= "goTo($event)"/>
+  <TheNav :current-page="currentPage" @navigate = "goTo($event)"/>
 </template>
 
 <style scoped></style>

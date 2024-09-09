@@ -8,6 +8,22 @@ export function isTimelineItemValid({ hour }) {
   return isHourValid(hour)
 }
 
+export function validateTimelineItems(timelineItems) {
+  return timelineItems.every(isTimelineItemValid)
+}
+
+export function validateActivities(activities) {
+  return activities.every(isActivityValid)
+}
+
+export function isActivityValid(activity) {
+  return isNotEmptyString(activity)
+}
+
+function isNotEmptyString(value) {
+  return isString(value) && value.length > 0
+}
+
 export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGHTHOUR, HOURS_IN_DAY - 1)
 }
@@ -17,7 +33,7 @@ export function validateSelectOptions(options) {
 }
 
 export function isSelectOptionValid({ value, label }) {
-  return isNumber(value) && isString(label)
+  return (isNumber(value) || isNotEmptyString(value)) && isNotEmptyString(label)
 }
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
@@ -29,6 +45,10 @@ export function isNumberOrNull(value) {
 
 function isBetween(value, start, end) {
   return value >= start && value <= end
+}
+
+export function isSelectValueValid(value) {
+  return isNotEmptyString(value) || isNumberOrNull(value)
 }
 
 function isNull(value) {
@@ -44,5 +64,5 @@ function isNumber(value) {
 }
 
 function isString(value) {
-  return value === 'string'
+  return typeof value === 'string'
 }

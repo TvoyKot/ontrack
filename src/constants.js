@@ -12,3 +12,38 @@ export const NAV_ITEMS = {
 
 export const HOURS_IN_DAY = 24;
 export const MIDNIGHTHOUR = 0;
+
+export const PERIOD_SELECT_OPTIONS = [
+  {
+    value: 15,
+    label: '0:15'
+  },
+  {
+    value: 30,
+    label: '0:30'
+  },
+  {
+    value: 45,
+    label: '0:45'
+  },
+  {
+    value: 60,
+    label: '1:00'
+  },
+  {
+    value: 75,
+    label: '1:15'
+  },
+  {
+    value: 90,
+    label: '1:30'
+  },
+  {
+    value: 105,
+    label: '1:45'
+  },
+  {
+    value: 120,
+    label: '2:00'
+  }
+]

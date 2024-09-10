@@ -29,7 +29,7 @@ function goTo(page) {
   @navigate= "goTo($event)"
   />
   <main class="flex flex-grow flex-col">
-    <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems"/>
+    <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timelineItems="timelineItems"/>
     <TheProgress v-show="currentPage === PAGE_PROGRESS"/>
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities"/>
   </main>

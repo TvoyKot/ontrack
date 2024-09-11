@@ -24,7 +24,7 @@ export function isActivityValid(activity) {
   return isNotEmptyString(activity)
 }
 
-function isNotEmptyString(value) {
+export function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
 
@@ -37,7 +37,7 @@ export function validateSelectOptions(options) {
 }
 
 export function isSelectOptionValid({ value, label }) {
-  return (isNumber(value) || isNotEmptyString(value)) && isNotEmptyString(label)
+  return isNumber(value) || isNotEmptyString(label)
 }
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)

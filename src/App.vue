@@ -14,7 +14,7 @@ import TheNav from './components/TheNav.vue'
 
 const timelineItems = generateTimelineItems()
 
-const activities = ref(['Coding', 'Reading', 'Training'])
+const activities = ref(['Coding', 'Reading', 'Training,Coding', 'Reading', 'Training'])
 
 const activitySelectOptions = generateActivitySelectOptions(activities.value)
 

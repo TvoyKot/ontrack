@@ -14,9 +14,9 @@ import TheNav from './components/TheNav.vue'
 
 const timelineItems = generateTimelineItems()
 
-const activities = ['Coding', 'Reading', 'Training']
+const activities = ref(['Coding', 'Reading', 'Training'])
 
-const activitySelectOptions = generateActivitySelectOptions(activities)
+const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
 const currentPage = ref(normalizePageHash())
 
@@ -24,6 +24,9 @@ function goTo(page) {
   currentPage.value = page
 }
 
+function deleteActivity(activity) {
+  activities.value.splice(activities.value.indexOf(activity), 1) 
+}
 </script>
 
 <template>
@@ -33,7 +36,7 @@ function goTo(page) {
   <main class="flex flex-grow flex-col">
     <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" :activity-select-options="activitySelectOptions"/>
     <TheProgress v-show="currentPage === PAGE_PROGRESS"/>
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities"/>
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" @delete-activity="deleteActivity"/>
   </main>
   <TheNav :current-page="currentPage" @navigate = "goTo($event)"/>
 </template>

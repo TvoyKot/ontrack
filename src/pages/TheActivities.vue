@@ -22,7 +22,7 @@ const emit = defineEmits({
     <ul v-if="activities.length" class="divide-y grow">
       <ActivityItem 
       v-for="activity in activities" 
-      :key="activity" :activity="activity" 
+      :key="activity.id" :activity="activity" 
       @delete="emit('deleteActivity', activity)"/>
     </ul>
     <TheActivitiesEmptyState v-else/>

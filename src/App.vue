@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions } from './functions'
+import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions, generateActivities, id } from './functions'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants.js'
 
 import TheHeader from './components/TheHeader.vue'
@@ -14,7 +14,7 @@ import TheNav from './components/TheNav.vue'
 
 const timelineItems = generateTimelineItems()
 
-const activities = ref(['Coding', 'Reading', 'Training'])
+const activities = ref(generateActivities())
 
 const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
@@ -24,8 +24,12 @@ function goTo(page) {
   currentPage.value = page
 }
 
-function createActivity(activity) {
-  activities.value.push(activity)
+function createActivity(name) {
+  activities.value.push({
+    id: id(),
+    name,
+    secondsToComplete: 0,
+  })
 }
 
 function deleteActivity(activity) {

@@ -57,3 +57,5 @@ export const PERIOD_SELECT_OPTIONS = [
     label: '2:00'
   }
 ]
+
+export const SECONDS_IN_HOUR = 1 * 3600 

@@ -8,7 +8,7 @@ import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '../constants.js'
 
 defineProps({
   activity: {
-    type: String,
+    type: Object,
     required: true,
     validator: isActivityValid,
   },

@@ -1,9 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 
-import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions, generateActivities, id } from './functions'
+import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions, generateActivities } from './functions'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants.js'
-
 import TheHeader from './components/TheHeader.vue'
 
 import TheTimeline from './pages/TheTimeline.vue'
@@ -24,12 +23,8 @@ function goTo(page) {
   currentPage.value = page
 }
 
-function createActivity(name) {
-  activities.value.push({
-    id: id(),
-    name,
-    secondsToComplete: 0,
-  })
+function createActivity(activity) {
+  activities.value.push(activity)
 }
 
 function deleteActivity(activity) {

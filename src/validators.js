@@ -46,24 +46,24 @@ export function isSelectOptionValid({ value, label }) {
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
 }
+export function isSelectValueValid(value) {
+  return isNotEmptyString(value) || isNumberOrNull(value)
+}
 
 export function isNumberOrNull(value) {
   return isNumber(value) || isNull(value)
 }
 
-export function isSelectValueValid(value) {
-  return isNotEmptyString(value) || isNumberOrNull(value)
-}
 
 export function isUndefined(value) {
   return value === undefined
 }
 
+export function isNull(value) {
+  return value === null
+}
 function isBetween(value, start, end) {
   return value >= start && value <= end
-}
-function isNull(value) {
-  return value === null
 }
 function isNumber(value) {
   return value === 'number'

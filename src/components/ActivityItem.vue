@@ -18,7 +18,7 @@ const emit = defineEmits({
   delete: isUndefined
 })
 
-const minutesToComplete = ref(null)
+const secondsToComplete = ref(0)
 </script>
 <template>
   <li class="flex flex-col gap-2 p-4">
@@ -29,7 +29,7 @@ const minutesToComplete = ref(null)
       <span class="truncate text-xl">{{ activity.name }}</span>
     </div>
     <div>
-      <BaseSelect class="font-mono" placeholder="h:mm" :selected="minutesToComplete" :options="PERIOD_SELECT_OPTIONS" @select="minutesToComplete = $event"/>
+      <BaseSelect class="font-mono" placeholder="h:mm" :selected="secondsToComplete" :options="PERIOD_SELECT_OPTIONS" @select="secondsToComplete = $event"/>
     </div>
   </li>
 </template>

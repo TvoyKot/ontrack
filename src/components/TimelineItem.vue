@@ -1,33 +1,50 @@
 <script setup>
-import { ref } from 'vue'
-import {  isTimelineItemValid, validateSelectOptions } from '../validators.js'
+import {
+  isTimelineItemValid,
+  validateSelectOptions,
+  isActivityValid,
+  validateActivities
+} from '../validators.js'
 
 import TimelineHour from './TimelineHour.vue'
 import BaseSelect from './BaseSelect.vue'
 
-defineProps({
+const props = defineProps({
   timelineItem: {
     type: Object,
     required: true,
     validator: isTimelineItemValid
   },
+  activities: {
+    required: true,
+    type: Object,
+    validator: validateActivities
+  },
   activitySelectOptions: {
     required: true,
     type: Array,
-    validator: validateSelectOptions,
+    validator: validateSelectOptions
   }
 })
 
-const selectedActivityId = ref(null)
+const emit = defineEmits({
+  selectActivity: isActivityValid
+})
+function selectActivity(id) {
+  emit(
+    'selectActivity',
+    props.activities.find((activity) => activity.id === id)
+  )
+}
 </script>
 <template>
   <li class="relative flex flex-col gap-2 border-gray-200 border-t py-10 px-4">
     <TimelineHour :hour="timelineItem.hour" />
     <BaseSelect
-      :selected="selectedActivityId"
+      :selected="timelineItem.activityId"
       :options="activitySelectOptions"
       placeholder="Rest"
-      @select="selectedActivityId = $event"
+      @select="selectActivity"
     />
   </li>
 </template>

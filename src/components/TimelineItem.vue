@@ -3,6 +3,7 @@ import {
   isTimelineItemValid,
   validateSelectOptions,
   isActivityValid,
+  isNull,
   validateActivities
 } from '../validators.js'
 
@@ -28,12 +29,14 @@ const props = defineProps({
 })
 
 const emit = defineEmits({
-  selectActivity: isActivityValid
+  selectActivity(activity) {
+    return isNull(activity) || isActivityValid
+  }
 })
 function selectActivity(id) {
   emit(
     'selectActivity',
-    props.activities.find((activity) => activity.id === id)
+    props.activities.find((activity) => activity.id === id) || null
   )
 }
 </script>

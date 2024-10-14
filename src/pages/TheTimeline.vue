@@ -5,7 +5,6 @@ import {
   validateSelectOptions,
   validateActivities,
   isTimelineItemValid,
-  isNull,
   isActivityValid
 } from '../validators'
 defineProps({
@@ -26,10 +25,9 @@ defineProps({
   }
 })
 const emit = defineEmits({
-  setTimelineItemActivity({ timelineItem, activity }) {
+  setTimelineItemActivity(timelineItem, activity ) {
     return [
       isTimelineItemValid(timelineItem),
-      isNull(activity) ||
       isActivityValid(activity)
     ].every(Boolean)
   }

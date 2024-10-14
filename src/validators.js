@@ -21,11 +21,7 @@ export function validateActivities(activities) {
 }
 
 export function isActivityValid({ id, name, secondsToComplete }) {
-  return [
-    isNotEmptyString(id), 
-    isNotEmptyString(name), 
-    isNumber(secondsToComplete)
-  ].every(Boolean)
+  return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
 export function isNotEmptyString(value) {
@@ -54,7 +50,6 @@ export function isNumberOrNull(value) {
   return isNumber(value) || isNull(value)
 }
 
-
 export function isUndefined(value) {
   return value === undefined
 }
@@ -62,13 +57,12 @@ export function isUndefined(value) {
 export function isNull(value) {
   return value === null
 }
+export function isNumber(value) {
+  return value === 'number'
+}
 function isBetween(value, start, end) {
   return value >= start && value <= end
 }
-function isNumber(value) {
-  return value === 'number'
-}
-
 function isString(value) {
   return typeof value === 'string'
 }

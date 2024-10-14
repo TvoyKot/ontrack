@@ -22,40 +22,19 @@ export const NAV_ITEMS = {
 
 export const HOURS_IN_DAY = 24;
 export const MIDNIGHTHOUR = 0;
+export const SECONDS_IN_HOUR = 3600;
 
 export const PERIOD_SELECT_OPTIONS = [
   {
-    value: 15 * 60,
-    label: '0:15'
+    value: 1 * SECONDS_IN_HOUR,
+    label: '01:00'
   },
   {
-    value: 30 * 60,
-    label: '0:30'
+    value: 2 * SECONDS_IN_HOUR,
+    label: '02:00'
   },
   {
-    value: 45 * 60,
-    label: '0:45'
+    value: 3 * SECONDS_IN_HOUR,
+    label: '03:00'
   },
-  {
-    value: 60 * 60,
-    label: '1:00'
-  },
-  {
-    value: 75 * 60,
-    label: '1:15'
-  },
-  {
-    value: 90 * 60,
-    label: '1:30'
-  },
-  {
-    value: 105 * 60,
-    label: '1:45'
-  },
-  {
-    value: 120 * 60,
-    label: '2:00'
-  }
 ]
-
-export const SECONDS_IN_HOUR = 1 * 3600 

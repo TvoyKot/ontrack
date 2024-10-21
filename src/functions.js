@@ -4,9 +4,8 @@ import {
   MIDNIGHTHOUR,
   SECONDS_IN_HOUR,
   SECONDS_IN_MINUTE,
-  MINUTES_IN_HOUR,
+  MINUTES_IN_HOUR
 } from './constants.js'
-import { generatePeriodSelectOptionsLabel } from 'functions.js'
 import { isPageValid, isNull } from './validators.js'
 export function normalizePageHash() {
   const page = window.location.hash.slice(1)

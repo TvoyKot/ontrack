@@ -8,7 +8,7 @@ import {
   MILLISECONDS_IN_SECOND
 } from '../constants.js'
 import { formatSeconds } from '../functions.js'
- import { isNumber, isHourValid } from '../validators.js'
+import { isNumber, isHourValid } from '../validators.js'
 import BaseButton from './BaseButton.vue'
 
 const props = defineProps({
@@ -17,30 +17,36 @@ const props = defineProps({
     type: Number,
     validator: isNumber
   },
-   hour: {
+  hour: {
     required: true,
     type: Number,
-    validator: isHourValid,
+    validator: isHourValid
   }
+})
+
+const emit = defineEmits({
+  updateSeconds: isNumber,
 })
 
 const seconds = ref(props.seconds)
 const isRunning = ref(false)
 
-const isStartButtonDisabled = props.hour !== new Date().getHours() 
+const isStartButtonDisabled = props.hour !== new Date().getHours()
 
 function start() {
   isRunning.value = setInterval(() => {
+    emit('updateSeconds', 1)
     seconds.value++
   }, MILLISECONDS_IN_SECOND)
 }
 function stop() {
   clearInterval(isRunning.value)
-  isRunning.value = false 
+  isRunning.value = false
 }
 
 function reset() {
   stop()
+  emit('updateSeconds', -seconds.value)
   seconds.value = 0
 }
 </script>

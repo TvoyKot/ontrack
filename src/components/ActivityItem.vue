@@ -3,14 +3,19 @@ import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
 import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
 import { TrashIcon } from '@heroicons/vue/24/solid'
-import { isActivityValid, isUndefined, isNumber } from '../validators.js'
+import { isActivityValid, validateTimelineItems, isUndefined, isNumber } from '../validators.js'
 import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '../constants.js'
 
 defineProps({
   activity: {
-    type: Object,
     required: true,
+    type: Object,
     validator: isActivityValid
+  },
+  timelineItems: {
+    required: true,
+    type: Array,
+    validator: validateTimelineItems,
   }
 })
 
@@ -35,7 +40,11 @@ const emit = defineEmits({
         :options="PERIOD_SELECT_OPTIONS"
         @select="emit('setSecondsToComplete', $event || 0)"
       />
-     <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity"/>
+      <ActivitySecondsToComplete
+        v-if="activity.secondsToComplete"
+        :activity="activity"
+        :timeline-items="timelineItems"
+      />
     </div>
   </li>
 </template>

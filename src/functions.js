@@ -27,21 +27,19 @@ export function generateActivities() {
   }))
 }
 
+export function getTotalActivitySeconds(activity, timelineItems) {
+  return timelineItems
+  .filter((timelineItem) => timelineItem.activityId === activity.id)
+  .reduce((totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds), 0)
+}
 export function generateTimelineItems(activities) {
   return [...Array(HOURS_IN_DAY).keys()].map((hour) => ({
     hour,
-    activityId: hour % 4 === 0 ? null : activities[hour % 2].id,
-    activitySeconds: hour % 4 === 0 ? 0 : (15 * SECONDS_IN_MINUTE * hour) % SECONDS_IN_HOUR,
+    activityId: [0, 1, 2, 3, 4].includes(hour) ? activities[hour % 3].id : null,
+    activitySeconds: [0, 1, 2, 3, 4].includes(hour) ? hour * 600 : 0
+    // activityId: hour % 4 === 0 ? null : activities[hour % 2].id,
+    // activitySeconds: hour % 4 === 0 ? 0 : (15 * SECONDS_IN_MINUTE * hour) % SECONDS_IN_HOUR,
   }))
-  // const timelineItems = []
-  // for (let hour = MIDNIGHTHOUR; hour < HOURS_IN_DAY; hour++) {
-  //   timelineItems.push({
-  //     hour,
-  //     activityId: hour % 4 === 0 ? null : activities[hour % 2].id,
-  //     activitySeconds: hour % 4 === 0 ? 0 : (15 * SECONDS_IN_MINUTE * hour) % SECONDS_IN_HOUR,
-  //   })
-  // }
-  // return timelineItems  ПРЕДЫДУЩАЯ РЕАЛИЗАЦИЯ(ЗАКОНЧЕНА 51#)
 }
 
 export function normalizeSelectValue(value) {

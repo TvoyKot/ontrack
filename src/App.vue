@@ -16,7 +16,6 @@ import TheActivities from './pages/TheActivities.vue'
 
 import TheNav from './components/TheNav.vue'
 
-provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 
 const activities = ref(generateActivities())
 
@@ -27,6 +26,10 @@ const activitySelectOptions = computed(() => generateActivitySelectOptions(activ
 const currentPage = ref(normalizePageHash())
 const timeline = ref()
 
+provide(
+  'updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds
+)
+provide('timelineItems', timelineItems.value)
 function goTo(page) {
   if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE ) {
     console.log(timeline.value)
@@ -81,7 +84,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      :timeline-items="timelineItems"
       @create-activity="createActivity"
       @delete-activity="deleteActivity"
       @set-activity-seconds-to-complete="setActivitySecondsToComplete"

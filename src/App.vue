@@ -29,7 +29,15 @@ const timeline = ref()
 provide(
   'updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds
 )
-provide('timelineItems', timelineItems.value)
+provide (
+  'activitySelectOptions', activitySelectOptions.value
+)
+provide(
+  'timelineItems', timelineItems.value
+)
+provide(
+  'activities', activities.value
+)
 function goTo(page) {
   if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE ) {
     console.log(timeline.value)
@@ -74,8 +82,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
-      :activities="activities"
-      :activity-select-options="activitySelectOptions"
       :currentPage="currentPage"
       ref="timeline"
       @set-timeline-item-activity="setTimelineItemActivity"

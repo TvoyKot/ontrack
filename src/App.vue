@@ -30,6 +30,9 @@ const timeline = ref()
 provide(
   'updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds
 )
+provide(
+  'setActivitySecondsToComplete', setActivitySecondsToComplete
+)
 provide (
   'activitySelectOptions', activitySelectOptions.value
 )
@@ -95,7 +98,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       :activities="activities"
       @create-activity="createActivity"
       @delete-activity="deleteActivity"
-      @set-activity-seconds-to-complete="setActivitySecondsToComplete"
     />
   </main>
   <TheNav :current-page="currentPage" @navigate="goTo($event)" />

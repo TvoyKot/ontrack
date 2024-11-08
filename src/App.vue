@@ -34,13 +34,13 @@ provide (
   'activitySelectOptions', activitySelectOptions.value
 )
 provide(
+  'setTimelineItemActivity', setTimelineItemActivity
+)
+provide(
   'periodSelectOptions', generatePeriodSelectOptions()
 )
 provide(
   'timelineItems', timelineItems.value
-)
-provide(
-  'activities', activities.value
 )
 function goTo(page) {
   if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE ) {
@@ -67,8 +67,8 @@ function deleteActivity(activity) {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-function setTimelineItemActivity(timelineItem, activity ) {
-  timelineItem.activityId = activity.id
+function setTimelineItemActivity(timelineItem, activityId ) {
+  timelineItem.activityId = activityId
 }
 
 function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
@@ -88,7 +88,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       :timeline-items="timelineItems"
       :currentPage="currentPage"
       ref="timeline"
-      @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
     <TheActivities

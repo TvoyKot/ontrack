@@ -1,5 +1,4 @@
 import { ClockIcon, ListBulletIcon, ChartBarIcon } from '@heroicons/vue/24/solid'
-import { generatePeriodSelectOptions } from './functions.js'
 
 export const BUTTON_TYPE_PRIMARY = 'primary'
 export const BUTTON_TYPE_NEUTRAL = 'neutral'
@@ -33,9 +32,3 @@ export const MINUTES_IN_HOUR = SECONDS_IN_HOUR / SECONDS_IN_MINUTE;
 export const MILLISECONDS_IN_SECOND = 1000;
 
 export const NULLABLE_ACTIVITY = { id: null };
-
-const PERIOD_IN_MINUTES = [
-  15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180,
-]
-
-export const PERIOD_SELECT_OPTIONS = generatePeriodSelectOptions(PERIOD_IN_MINUTES)

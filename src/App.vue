@@ -5,7 +5,8 @@ import {
   normalizePageHash,
   generateTimelineItems,
   generateActivitySelectOptions,
-  generateActivities
+  generateActivities,
+  generatePeriodSelectOptions
 } from './functions'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants.js'
 import TheHeader from './components/TheHeader.vue'
@@ -31,6 +32,9 @@ provide(
 )
 provide (
   'activitySelectOptions', activitySelectOptions.value
+)
+provide(
+  'periodSelectOptions', generatePeriodSelectOptions()
 )
 provide(
   'timelineItems', timelineItems.value

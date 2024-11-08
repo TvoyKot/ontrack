@@ -50,8 +50,11 @@ export function generateActivitySelectOptions(activities) {
   return activities.map((activity) => ({ value: activity.id, label: activity.name }))
 }
 
-export function generatePeriodSelectOptions(periodInMinutes) {
-  return periodInMinutes.map((periodInMinutes) => ({
+export function generatePeriodSelectOptions() {
+  const periodsInMinutes = [
+    15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180,
+  ]
+  return periodsInMinutes.map((periodInMinutes) => ({
     value: periodInMinutes * SECONDS_IN_MINUTE,
     label: generatePeriodSelectOptionsLabel(periodInMinutes)
   }))

@@ -36,6 +36,9 @@ provide(
 provide(
   'createActivity', createActivity
 )
+provide(
+  'deleteActivity', deleteActivity
+)
 provide (
   'activitySelectOptions', activitySelectOptions.value
 )
@@ -99,7 +102,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      @delete-activity="deleteActivity"
     />
   </main>
   <TheNav :current-page="currentPage" @navigate="goTo($event)" />

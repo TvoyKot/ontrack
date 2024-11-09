@@ -33,6 +33,9 @@ provide(
 provide(
   'setActivitySecondsToComplete', setActivitySecondsToComplete
 )
+provide(
+  'createActivity', createActivity
+)
 provide (
   'activitySelectOptions', activitySelectOptions.value
 )
@@ -96,7 +99,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      @create-activity="createActivity"
       @delete-activity="deleteActivity"
     />
   </main>

@@ -2,7 +2,6 @@
 import { ref, provide, computed } from 'vue'
 
 import {
-  normalizePageHash,
   generateTimelineItems,
   generateActivitySelectOptions,
   generateActivities,
@@ -17,6 +16,8 @@ import TheActivities from './pages/TheActivities.vue'
 
 import TheNav from './components/TheNav.vue'
 
+import { currentPage, timelineRef, navigate } from './router.js'
+
 
 const activities = ref(generateActivities())
 
@@ -24,8 +25,6 @@ const timelineItems = ref(generateTimelineItems(activities.value))
 
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
-const currentPage = ref(normalizePageHash())
-const timeline = ref()
 
 provide(
   'updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds
@@ -51,16 +50,7 @@ provide(
 provide(
   'timelineItems', timelineItems.value
 )
-function goTo(page) {
-  if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE ) {
-    console.log(timeline.value)
-    timeline.value.scrollToHour()
-  }
-  if (page !== PAGE_TIMELINE) {
-    document.body.scrollIntoView()
-  } 
-  currentPage.value = page
-}
+
 
 function createActivity(activity) {
   activities.value.push(activity)
@@ -90,13 +80,13 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
 </script>
 
 <template>
-  <TheHeader @navigate="goTo($event)" />
+  <TheHeader @navigate="navigate($event)" />
   <main class="flex flex-grow flex-col">
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
       :currentPage="currentPage"
-      ref="timeline"
+      ref="timelineRef"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
     <TheActivities
@@ -104,7 +94,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       :activities="activities"
     />
   </main>
-  <TheNav :current-page="currentPage" @navigate="goTo($event)" />
+  <TheNav :current-page="currentPage" @navigate="navigate($event)" />
 </template>
 
 <style scoped></style>

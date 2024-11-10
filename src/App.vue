@@ -16,7 +16,7 @@ import TheActivities from './pages/TheActivities.vue'
 
 import TheNav from './components/TheNav.vue'
 
-import { currentPage, timelineRef, navigate } from './router.js'
+import { currentPage, timelineRef } from './router.js'
 
 
 const activities = ref(generateActivities())
@@ -80,12 +80,11 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
 </script>
 
 <template>
-  <TheHeader @navigate="navigate($event)" />
+  <TheHeader />
   <main class="flex flex-grow flex-col">
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
-      :currentPage="currentPage"
       ref="timelineRef"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
@@ -94,7 +93,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       :activities="activities"
     />
   </main>
-  <TheNav :current-page="currentPage" @navigate="navigate($event)" />
+  <TheNav />
 </template>
 
 <style scoped></style>

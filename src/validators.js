@@ -1,7 +1,8 @@
 import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGHTHOUR, BUTTON_TYPES } from './constants.js'
 
 export function isPageValid(page) {
-  return Object.keys(NAV_ITEMS).includes(page)
+  // return Object.keys(NAV_ITEMS).includes(page)
+  return NAV_ITEMS.some(navItem => navItem.page === page)
 }
 
 export function isButtonTypeValid(type) {
@@ -14,6 +15,10 @@ export function isTimelineItemValid({ hour }) {
 
 export function validateTimelineItems(timelineItems) {
   return timelineItems.every(isTimelineItemValid)
+}
+
+export function isNavItemValid(navItem) {
+  return NAV_ITEMS.includes(navItem)
 }
 
 export function validateActivities(activities) {

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide, computed } from 'vue'
+import { ref, provide, computed, readonly } from 'vue'
 
 import {
   generateTimelineItems,
@@ -7,50 +7,21 @@ import {
   generateActivities,
   generatePeriodSelectOptions
 } from './functions'
+import { currentPage, timelineRef } from './router.js'
+import * as keys from './keys.js'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants.js'
 import TheHeader from './components/TheHeader.vue'
 
 import TheTimeline from './pages/TheTimeline.vue'
 import TheProgress from './pages/TheProgress.vue'
 import TheActivities from './pages/TheActivities.vue'
-
 import TheNav from './components/TheNav.vue'
-
-import { currentPage, timelineRef } from './router.js'
-
 
 const activities = ref(generateActivities())
 
 const timelineItems = ref(generateTimelineItems(activities.value))
 
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
-
-
-provide(
-  'updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds
-)
-provide(
-  'setActivitySecondsToComplete', setActivitySecondsToComplete
-)
-provide(
-  'createActivity', createActivity
-)
-provide(
-  'deleteActivity', deleteActivity
-)
-provide (
-  'activitySelectOptions', activitySelectOptions.value
-)
-provide(
-  'setTimelineItemActivity', setTimelineItemActivity
-)
-provide(
-  'periodSelectOptions', generatePeriodSelectOptions()
-)
-provide(
-  'timelineItems', timelineItems.value
-)
-
 
 function createActivity(activity) {
   activities.value.push(activity)
@@ -66,7 +37,7 @@ function deleteActivity(activity) {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-function setTimelineItemActivity(timelineItem, activityId ) {
+function setTimelineItemActivity(timelineItem, activityId) {
   timelineItem.activityId = activityId
 }
 
@@ -77,6 +48,15 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
 function setActivitySecondsToComplete(activity, secondsToComplete) {
   activity.secondsToComplete = secondsToComplete
 }
+
+provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
+provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
+provide(keys.createActivityKey, createActivity)
+provide(keys.deleteActivityKey, deleteActivity)
+provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions.value))
+provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
+provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
+provide(keys.timelineItemsKey, readonly(timelineItems.value))
 </script>
 
 <template>
@@ -88,10 +68,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       ref="timelineRef"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
-    <TheActivities
-      v-show="currentPage === PAGE_ACTIVITIES"
-      :activities="activities"
-    />
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
   </main>
   <TheNav />
 </template>

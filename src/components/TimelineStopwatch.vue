@@ -7,11 +7,10 @@ import {
   BUTTON_TYPE_WARNING,
   MILLISECONDS_IN_SECOND
 } from '../constants.js'
+import { updateTimelineItemActivitySecondsKey } from '../keys.js'
 import { formatSeconds } from '../functions.js'
 import { isTimelineItemValid } from '../validators.js'
 import BaseButton from './BaseButton.vue'
-
-inject('updateTimelineItemActivitySeconds')
 
 const props = defineProps({
   timelineItem: {
@@ -21,7 +20,7 @@ const props = defineProps({
   }
 })
 
-const updateTimelineItemActivitySeconds = inject('updateTimelineItemActivitySeconds')
+const updateTimelineItemActivitySeconds = inject(updateTimelineItemActivitySecondsKey)
 
 const seconds = ref(props.timelineItem.activitySeconds)
 const isRunning = ref(false)

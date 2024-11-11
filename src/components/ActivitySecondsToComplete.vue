@@ -2,6 +2,7 @@
 import { computed, inject } from 'vue'
 import { isActivityValid } from '../validators.js'
 import { formatSeconds, getTotalActivitySeconds } from '../functions.js'
+import { timelineItemsKey } from '../keys.js'
 const props = defineProps({
   activity: {
     required: true,
@@ -23,7 +24,7 @@ const secondsDiff = computed(
     getTotalActivitySeconds(props.activity, timelineItems) - props.activity.secondsToComplete
 )
 
-const timelineItems = inject('timelineItems')
+const timelineItems = inject(timelineItemsKey)
 </script>
 <template>
   <div

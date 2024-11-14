@@ -33,10 +33,10 @@ provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySec
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
 provide(keys.createActivityKey, createActivity)
 provide(keys.deleteActivityKey, deleteActivity)
-provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions.value))
+provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
-provide(keys.timelineItemsKey, readonly(timelineItems.value))
+provide(keys.timelineItemsKey, readonly(timelineItems))
 </script>
 
 <template>

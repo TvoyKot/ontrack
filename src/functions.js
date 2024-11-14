@@ -7,7 +7,6 @@ import {
 } from './constants.js'
 import { isNull } from './validators.js'
 
-
 export function id() {
   return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }
@@ -58,6 +57,10 @@ function generatePeriodSelectOptionsLabel(periodInMinutes) {
     .padStart(2, 0)
   const minutes = (periodInMinutes % MINUTES_IN_HOUR).toString().padStart(2, 0)
   return `${hours}:${minutes}`
+}
+
+export function currentHour() {
+  return new Date().getHours()
 }
 
 export function formatSeconds(seconds) {

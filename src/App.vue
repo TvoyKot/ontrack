@@ -15,7 +15,8 @@ import {
 import {
   updateTimelineItemActivitySeconds,
   timelineItems,
-  setTimelineItemActivity
+  setTimelineItemActivity,
+  resetTimelineItemActivities
 } from './timeline-items.js'
 import TheHeader from './components/TheHeader.vue'
 
@@ -27,7 +28,10 @@ import TheNav from './components/TheNav.vue'
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
 provide(keys.createActivityKey, createActivity)
-provide(keys.deleteActivityKey, deleteActivity)
+provide(keys.deleteActivityKey, (activity) => {
+  resetTimelineItemActivities(activity)
+  deleteActivity(activity)
+})
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))

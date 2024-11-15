@@ -1,5 +1,4 @@
 import {
-  SECONDS_IN_HOUR,
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR,
   MILLISECONDS_IN_SECOND
@@ -8,13 +7,6 @@ import { isNull } from './validators.js'
 
 export function id() {
   return Date.now().toString(36) + Math.random().toString(36).substring(2)
-}
-export function generateActivities() {
-  return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
-    id: id(),
-    name,
-    secondsToComplete: hours * SECONDS_IN_HOUR
-  }))
 }
 
 export function getTotalActivitySeconds(activity, timelineItems) {
@@ -25,10 +17,6 @@ export function getTotalActivitySeconds(activity, timelineItems) {
 
 export function normalizeSelectValue(value) {
   return isNull(value) || isNaN(value) ? value : +value
-}
-
-export function generateActivitySelectOptions(activities) {
-  return activities.map((activity) => ({ value: activity.id, label: activity.name }))
 }
 
 export function generatePeriodSelectOptions() {

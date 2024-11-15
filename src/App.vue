@@ -10,11 +10,9 @@ import {
   activitySelectOptions,
   createActivity,
   deleteActivity,
-  activities
 } from './activities.js'
 import {
   updateTimelineItemActivitySeconds,
-  timelineItems,
   setTimelineItemActivity,
   resetTimelineItemActivities
 } from './timeline-items.js'
@@ -35,7 +33,6 @@ provide(keys.deleteActivityKey, (activity) => {
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
-provide(keys.timelineItemsKey, readonly(timelineItems))
 </script>
 
 <template>
@@ -43,11 +40,10 @@ provide(keys.timelineItemsKey, readonly(timelineItems))
   <main class="flex flex-grow flex-col">
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
-      :timeline-items="timelineItems"
       ref="timelineRef"
     />
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
   </main>
   <TheNav />
 </template>

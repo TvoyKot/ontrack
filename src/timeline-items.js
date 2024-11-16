@@ -6,7 +6,6 @@ import { currentHour } from './functions.js'
 export const timelineItems = ref(generateTimelineItems())
 export const timelineItemRefs = ref([])
 
-
 export function updateTimelineItem(timelineItem, fields) {
   return Object.assign(timelineItem, fields)
 }
@@ -31,8 +30,11 @@ export function getTotalActivitySeconds(activity) {
     )
 }
 
-export function scrollToHour(hour = null, isSmooth = true) {
-  hour ??= currentHour()
+export function scrollToCurrentHour(isSmooth = true) {
+  scrollToHour(currentHour(), isSmooth)
+}
+
+export function scrollToHour(hour, isSmooth = true) {
   const el = hour === MIDNIGHTHOUR ? document.body : timelineItemRefs.value[hour - 1].$el
   el.scrollIntoView({
     behavior: isSmooth ? 'smooth' : 'instant'

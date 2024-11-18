@@ -1,4 +1,5 @@
 import { generatePeriodSelectOptions } from './functions'
+import { ICON_CLOCK, ICON_LIST_BULLET, ICON_CHART_BAR } from './icons.js'
 
 export const PAGE_TIMELINE = 'timeline'
 export const PAGE_ACTIVITIES = 'activities'
@@ -7,15 +8,15 @@ export const PAGE_PROGRESS = 'progress'
 export const NAV_ITEMS = [
   {
     page: PAGE_TIMELINE,
-    icon: 'Clock'
+    icon: ICON_CLOCK
   },
   {
     page: PAGE_ACTIVITIES,
-    icon: 'ListBullet'
+    icon: ICON_LIST_BULLET
   },
   {
     page: PAGE_PROGRESS,
-    icon: 'ChartBar'
+    icon: ICON_CHART_BAR
   }
 ]
 

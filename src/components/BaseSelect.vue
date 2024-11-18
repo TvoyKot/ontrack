@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import { ICON_X_MARK } from '../icons.js'
 import { BUTTON_TYPE_NEUTRAL } from '../constants.js'
 import { normalizeSelectValue } from '../functions.js'
 import BaseButton from './BaseButton.vue'
@@ -32,7 +33,7 @@ function select(value) {
 <template>
   <div class="flex gap-2">
     <BaseButton :type="BUTTON_TYPE_NEUTRAL" @click="select(null)">
-      <BaseIcon name="XMark" class="h-8" />
+      <BaseIcon :name="ICON_X_MARK" class="h-8" />
     </BaseButton>
     <select
       @change="select($event.target.value)"

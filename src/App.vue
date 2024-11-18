@@ -16,5 +16,3 @@ import TheNav from './components/TheNav.vue'
   </main>
   <TheNav />
 </template>
-
-<style scoped></style>

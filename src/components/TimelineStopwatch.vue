@@ -6,6 +6,7 @@ import {
   BUTTON_TYPE_WARNING,
   MILLISECONDS_IN_SECOND
 } from '../constants.js'
+import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '../icons.js'
 import { updateTimelineItem } from '../timeline-items.js'
 import { currentHour, formatSeconds } from '../functions.js'
 import { isTimelineItemValid } from '../validators.js'
@@ -56,16 +57,16 @@ function reset() {
 <template>
   <div class="flex gap-2 w-full">
     <BaseButton :type="BUTTON_TYPE_DANGER" @click="reset" :disabled="!seconds">
-      <BaseIcon name="ArrowPath" class="h-8" />
+      <BaseIcon :name="ICON_ARROW_PATH" class="h-8" />
     </BaseButton>
     <div class="flex flex-grow items-center rounded bg-gray-100 px-2 text-3xl">
       {{ formatSeconds(seconds) }}
     </div>
     <BaseButton v-if="isRunning" :type="BUTTON_TYPE_WARNING" @click="stop">
-      <BaseIcon name="Pause" class="h-8" />
+      <BaseIcon :name="ICON_PAUSE" class="h-8" />
     </BaseButton>
     <BaseButton v-else :type="BUTTON_TYPE_SUCCESS" @click="start" :disabled="isStartButtonDisabled">
-      <BaseIcon name="Play" class="h-8" />
+      <BaseIcon :name="ICON_PLAY" class="h-8" />
     </BaseButton>
   </div>
 </template>

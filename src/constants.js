@@ -42,3 +42,5 @@ export const MINUTES_IN_HOUR = SECONDS_IN_HOUR / SECONDS_IN_MINUTE
 export const MILLISECONDS_IN_SECOND = 1000
 
 export const PERIOD_SELECT_OPTIONS = generatePeriodSelectOptions()
+
+export const HUNDRED_PERCENT = 100

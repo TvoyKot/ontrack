@@ -1,9 +1,13 @@
 <script setup>
+import { computed } from 'vue'
+import { getActivityProgress } from '../activities'
+
 const props = defineProps(['index', 'activity'])
 
-const color = ['red', 'yellow', 'blue', 'green'][props.index]
-const progress = [10, 50, 70, 100][props.index]
+const color = ['red', 'yellow', 'purple', 'green'][props.index]
 const timeProgress = ['03/30', '15/30', '21/30', '30/30'][props.index]
+
+const progress = computed(() => getActivityProgress(props.activity))
 </script>
 <template>
   <li class="flex flex-col gap-1 p-4">

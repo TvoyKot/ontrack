@@ -13,11 +13,11 @@ const props = defineProps({
 
 const classes = computed(
   () =>
-    `flex items-center gap-2 rounded bg-purple-100 text-xl px-2 text-purple-600 font-mono ${colorClasses.value}`
+    `flex items-center gap-2 rounded text-xl px-2 font-mono ${colorClasses.value}`
 )
 
 const colorClasses = computed(() =>
-  secondsDiff.value < 0 ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'
+  secondsDiff.value < 0 ? 'bg-red-100 text-red-600' : 'bg-green-200 text-green-600'
 )
 
 const seconds = computed(() => `${sign.value}${formatSeconds(secondsDiff.value)}`)

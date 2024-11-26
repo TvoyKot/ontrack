@@ -32,8 +32,8 @@ export function setActivitySecondsToComplete(activity, secondsToComplete) {
 function generateActivities() {
   return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
     id: id(),
-    name,
-    secondsToComplete: 15 * 60 //hours * SECONDS_IN_HOUR
+    name: name,
+    secondsToComplete: hours * SECONDS_IN_HOUR
   }))
 }
 

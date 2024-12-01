@@ -1,7 +1,6 @@
 import { computed, ref } from 'vue'
 import { id } from './functions.js'
 import { SECONDS_IN_HOUR, HUNDRED_PERCENT } from './constants.js'
-import { getTotalActivitySeconds } from './timeline-items.js'
 
 export const activities = ref(generateActivities())
 
@@ -19,9 +18,15 @@ export function deleteActivity(activity) {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-export function getActivityProgress(activity) {
+// export function calculateActivityCompletionPercantage(activity, trackedSeconds) {
+//   return Math.floor(
+//     (trackedSeconds * HUNDRED_PERCENT) / activity.secondsToComplete
+//   )
+// }
+
+export function calculateActivityCompletionPercantage({ secondsToComplete }, trackedSeconds) {
   return Math.floor(
-    (getTotalActivitySeconds(activity) * HUNDRED_PERCENT) / activity.secondsToComplete
+    (trackedSeconds * HUNDRED_PERCENT) / secondsToComplete
   )
 }
 
@@ -33,7 +38,7 @@ function generateActivities() {
   return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
     id: id(),
     name: name,
-    secondsToComplete: hours * SECONDS_IN_HOUR
+    secondsToComplete: 0 // hours * SECONDS_IN_HOUR
   }))
 }
 

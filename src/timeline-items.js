@@ -34,6 +34,7 @@ export function calculateTrackedActivitySeconds(activity) {
 
 //  ДРУГОЙ ВАРИАНТ РЕШЕНИЯ
 
+
 // function filterTimelineItemsByActivity({ id }) {
 //   return timelineItems.value.filter(( activityId ) => activityId === id)
 // }

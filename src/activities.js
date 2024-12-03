@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { id } from './functions.js'
-import { SECONDS_IN_HOUR, HUNDRED_PERCENT } from './constants.js'
+import {  SECONDS_IN_MINUTE, SECONDS_IN_HOUR, HUNDRED_PERCENT } from './constants.js'
 
 export const activities = ref(generateActivities())
 
@@ -38,7 +38,7 @@ function generateActivities() {
   return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
     id: id(),
     name: name,
-    secondsToComplete: 0 // hours * SECONDS_IN_HOUR
+    secondsToComplete:  SECONDS_IN_MINUTE * 15 // hours * SECONDS_IN_HOUR
   }))
 }
 

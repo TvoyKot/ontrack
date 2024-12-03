@@ -2,7 +2,7 @@
 import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
 import { ICON_TRASH } from '../icons.js'
-import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
+import RemainingActivitySeconds from './RemainingActivitySeconds.vue'
 import BaseIcon from './BaseIcon.vue'
 import { isActivityValid } from '../validators.js'
 import { deleteActivity, setActivitySecondsToComplete } from '../activities.js'
@@ -38,7 +38,7 @@ function deleteAndResetActivity(activity) {
         :options="PERIOD_SELECT_OPTIONS"
         @select="setActivitySecondsToComplete(activity, $event)"
       />
-      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
+      <RemainingActivitySeconds v-if="activity.secondsToComplete" :activity="activity" />
     </div>
   </li>
 </template>

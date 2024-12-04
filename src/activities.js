@@ -18,12 +18,6 @@ export function deleteActivity(activity) {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-// export function calculateActivityCompletionPercantage(activity, trackedSeconds) {
-//   return Math.floor(
-//     (trackedSeconds * HUNDRED_PERCENT) / activity.secondsToComplete
-//   )
-// }
-
 export function calculateActivityCompletionPercantage({ secondsToComplete }, trackedSeconds) {
   return Math.floor(
     (trackedSeconds * HUNDRED_PERCENT) / secondsToComplete

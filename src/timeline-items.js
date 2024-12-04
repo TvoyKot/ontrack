@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+// import { activities } from './activities.js'
 import { HOURS_IN_DAY, MIDNIGHTHOUR } from './constants.js'
 import { currentHour } from './functions.js'
 
@@ -10,12 +11,12 @@ export function updateTimelineItem(timelineItem, fields) {
 }
 
 export function resetTimelineItemActivities(activity) {
-  return timelineItems.value
+  timelineItems.value
     .filter((timelineItem) => hasActivity(timelineItem, activity))
     .forEach((timelineItem) =>
       updateTimelineItem(timelineItem, {
         activityId: null,
-        activitySeconds: 0
+        activitySeconds: timelineItem.hour === currentHour() ? timelineItem.activitySeconds : 0
       })
     )
 }
@@ -61,6 +62,6 @@ function generateTimelineItems() {
   return [...Array(HOURS_IN_DAY).keys()].map((hour) => ({
     hour,
     activityId: null, //[0, 1, 2, 3, 4].includes(hour) ? activities.value[hour % 3].id : null,
-    activitySeconds: 0 // [0, 1, 2, 3, 4].includes(hour) ? hour * 600 : 0
+    activitySeconds: 0 //[0, 1, 2, 3, 4].includes(hour) ? hour * 600 : 0
   }))
 }
